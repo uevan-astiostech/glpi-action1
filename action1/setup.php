@@ -29,6 +29,14 @@
  * --------------------------------------------------------------------------
  */
 
+ use Glpi\Plugin\Hooks;
+ use GlpiPlugin\Action1\Config;
+ use GlpiPlugin\Action1\Action1;
+ use GlpiPlugin\Action1\ItemForm;
+ use GlpiPlugin\Action1\Showtabitem;
+
+
+
 define('PLUGIN_ACTION1_VERSION', '0.0.3');
 
 // Minimal GLPI version, inclusive
@@ -42,15 +50,23 @@ define("PLUGIN_ACTION1_MAX_GLPI_VERSION", "10.0.99");
  *
  * @return void
  */
-function plugin_init_action1()
-{
-    global $PLUGIN_HOOKS;
+function plugin_init_action1(){
+    global $PLUGIN_HOOKS,$CFG_GLPI;
 
     $PLUGIN_HOOKS['csrf_compliant']['action1'] = true;
 
     // Register menu hook
-    $PLUGIN_HOOKS['config_page']['action1'] = 'front/setup.form.php';
-    plugin_action1_add_menus();
+    // $PLUGIN_HOOKS['config_page']['action1'] = 'front/setup.form.php';
+    Plugin::registerClass(Config::class, ['addtabon' => 'Config']);
+    $PLUGIN_HOOKS['menu_toadd']['action1'] = ['plugins' => Action1::class];
+    $PLUGIN_HOOKS['config_page']['action1'] = 'front/config.php';
+    
+    $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['action1'] = 'action1.js';
+    $PLUGIN_HOOKS[Hooks::ADD_CSS]['action1']        = 'action1.css';
+
+    $PLUGIN_HOOKS['status']['action1'] = 'plugin_action1_Status';
+
+    $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['action1'] = true;
 }
 
 
@@ -85,7 +101,10 @@ function plugin_version_action1()
  */
 function plugin_action1_check_prerequisites()
 {
-    return true;
+    if (false) {
+        return false;
+     }
+     return true;
 }
 
 /**

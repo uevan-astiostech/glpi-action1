@@ -29,6 +29,8 @@
  * --------------------------------------------------------------------------
  */
 
+use GlpiPlugin\Action1\Action1;
+
 /**
  * Plugin install process
  *
@@ -36,6 +38,33 @@
  */
 function plugin_action1_install()
 {
+    global $DB;
+
+    $config = new Config();
+
+    $config->setConfigurationValues('plugin:Action1', ['configuration' => false]);
+
+    $default_charset = DBConnection::getDefaultCharset();
+    $default_collation = DBConnection::getDefaultCollation();
+    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+
+    if (!$DB->tableExists("glpi_plugin_action1_option")) {
+        $query = "CREATE TABLE `glpi_plugin_action1_option` (
+                    `id` int {$default_key_sign} NOT NULL auto_increment,
+                    `option_name` varchar(255) default NULL,
+                    `option_value` text,
+                  PRIMARY KEY (`id`)
+                 ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
+
+        $DB->query($query) or die("error creating glpi_plugin_action1_option " . $DB->error());
+
+        $query = "INSERT INTO `glpi_plugin_action1_option`
+                         (`id`, `option_name`, `option_value`)
+                  VALUES (1, 'client_id', NULL),
+                         (2, 'client_secret', NULL)";
+        $DB->query($query) or die("error populate glpi_plugin_action1_option " . $DB->error());
+    }
+
     return true;
 }
 
@@ -46,22 +75,15 @@ function plugin_action1_install()
  */
 function plugin_action1_uninstall()
 {
-    Config::deleteConfigurationValues('plugin:action1');
+    global $DB;
+
+    $config = new Config();
+    $config->deleteConfigurationValues('plugin:Action1', ['configuration' => false]);
+
+    if ($DB->tableExists("glpi_plugin_action1_option")) {
+        $query = "DROP TABLE `glpi_plugin_action1_option`";
+        $DB->query($query) or die("error deleting glpi_plugin_action1_option");
+    }
+
     return true;
-}
-
-// Add the sub-menu to the Tools section
-function plugin_action1_add_menus() {
-    global $PLUGIN_HOOKS;
-
-    // Add the submenu under Tools
-    $PLUGIN_HOOKS['menu_toadd']['tools'] = ['action1' => 'PluginAction1Menu'];
-}
-
-function PluginAction1Menu() {
-    return [
-        'title'  => __('Action1 Setup', 'action1'),
-        'page'   => '/plugins/action1/front/setup.form.php',
-        'icon'   => 'fas fa-cogs'
-    ];
 }
