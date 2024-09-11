@@ -47,6 +47,8 @@ function plugin_init_action1()
     global $PLUGIN_HOOKS;
 
     $PLUGIN_HOOKS['csrf_compliant']['action1'] = true;
+    $PLUGIN_HOOKS['config_page']['action1'] = 'front/setup.form.php';
+    $PLUGIN_HOOKS['menu_toadd']['action1'] = ['admin' => 'front/action1.admin.php'];
 }
 
 
@@ -62,7 +64,7 @@ function plugin_version_action1()
         'name'           => 'Action1',
         'version'        => PLUGIN_ACTION1_VERSION,
         'author'         => '<a href="https://www.astiostech.com/">AstiosTech Sdn Bhd</a>',
-        'license'        => 'AGPLv3+',
+        'license'        => 'GPLv2+',
         'homepage'       => 'https://www.astiostech.com/',
         'requirements'   => [
             'glpi' => [

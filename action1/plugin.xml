@@ -35,7 +35,7 @@
       <!-- Add as many lang tag you want -->
       <lang>en_GB</lang>
    </langs>
-   <license>AGPLv3+</license>
+   <license>GPLv2+</license>
    <!--tags>
       <en>
          <tag>One tag</tag>
