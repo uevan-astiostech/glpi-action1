@@ -46,12 +46,6 @@ function plugin_action1_install()
  */
 function plugin_action1_uninstall()
 {
+    Config::deleteConfigurationValues('plugin:action1');
     return true;
-}
-
-function plugin_init_action1() {
-    global $PLUGIN_HOOKS;
-
-    // Add a submenu under Setup
-    $PLUGIN_HOOKS['config_page']['action1'] = 'front/action1setup.form.php';
 }

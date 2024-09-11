@@ -47,8 +47,8 @@ function plugin_init_action1()
     global $PLUGIN_HOOKS;
 
     $PLUGIN_HOOKS['csrf_compliant']['action1'] = true;
-    $PLUGIN_HOOKS['config_page']['action1'] = 'front/action1setup.form.php';
-    //$PLUGIN_HOOKS['menu_toadd']['action1'] = ['admin' => 'front/action1.admin.php'];
+
+    $PLUGIN_HOOKS['config_page']['action1'] = 'front/setup.form.php';
 }
 
 
