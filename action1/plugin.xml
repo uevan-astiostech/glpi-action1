@@ -26,7 +26,7 @@
    <versions>
       <!-- Add as many version tag you want -->
       <version>
-         <num>0.0.1</num>
+         <num>0.0.2</num>
          <!-- Add as many compatibility tag you want -->
          <compatibility>10.0.16</compatibility>
       </version>
@@ -35,7 +35,7 @@
       <!-- Add as many lang tag you want -->
       <lang>en_GB</lang>
    </langs>
-   <license>GPL V3+</license>
+   <license>AGPLv3+</license>
    <!--tags>
       <en>
          <tag>One tag</tag>

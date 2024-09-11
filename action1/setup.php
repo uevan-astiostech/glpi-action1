@@ -29,7 +29,7 @@
  * --------------------------------------------------------------------------
  */
 
-define('PLUGIN_ACTION1_VERSION', '0.0.1');
+define('PLUGIN_ACTION1_VERSION', '0.0.2');
 
 // Minimal GLPI version, inclusive
 define("PLUGIN_ACTION1_MIN_GLPI_VERSION", "10.0.0");
@@ -62,7 +62,7 @@ function plugin_version_action1()
         'name'           => 'Action1',
         'version'        => PLUGIN_ACTION1_VERSION,
         'author'         => '<a href="https://www.astiostech.com/">AstiosTech Sdn Bhd</a>',
-        'license'        => 'GPL V3+',
+        'license'        => 'AGPLv3+',
         'homepage'       => 'https://www.astiostech.com/',
         'requirements'   => [
             'glpi' => [
