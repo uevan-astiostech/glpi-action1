@@ -1,32 +1,48 @@
 <?php
+
+// Ensure the user has permission to view this page
 include('../../../inc/includes.php');
 
-// Security check
-Session::checkRight("config", READ);
+Session::checkRight("config", UPDATE);
 
-// Check if form is submitted
-if (isset($_POST['client_id']) && isset($_POST['client_secret'])) {
-    // Save the data in the GLPI configuration (plugin-specific)
+// If form is submitted, process the variables
+if (isset($_POST["save"])) {
+    $client_id = $_POST['client_id'];
+    $client_secret = $_POST['client_secret'];
+
+    // Save these variables in GLPI's configuration (or database, if needed)
     Config::saveConfigurationValues('plugin:action1', [
-        'client_id' => $_POST['client_id'],
-        'client_secret' => $_POST['client_secret'],
+        'client_id'     => $client_id,
+        'client_secret' => $client_secret
     ]);
 
     Html::back();
 }
 
-// Get saved values, if any
-$config = Config::getConfigurationValues('plugin:action1');
+Html::header(__('Action1 Setup', 'action1'), $_SERVER['PHP_SELF'], "admin", "config");
 
-Html::header(__('Action1 Setup', 'action1'), $_SERVER['PHP_SELF'], "admin", "setup", "plugin_action1");
+echo "<form method='post' action='" . $_SERVER['PHP_SELF'] . "'>";
+echo "<table class='tab_cadre_fixe'>";
+echo "<tr><th colspan='2'>" . __('Action1 API Setup', 'action1') . "</th></tr>";
 
-// Display form
-echo '<form method="post" action="' . $_SERVER["REQUEST_URI"] . '">';
-echo '<table class="tab_cadre_fixe">';
-echo '<tr class="tab_bg_1"><td>' . __('Client ID', 'action1') . ':</td><td><input type="text" name="client_id" value="' . Html::cleanPostForTextField($config['client_id'] ?? '') . '"></td></tr>';
-echo '<tr class="tab_bg_1"><td>' . __('Client Secret', 'action1') . ':</td><td><input type="text" name="client_secret" value="' . Html::cleanPostForTextField($config['client_secret'] ?? '') . '"></td></tr>';
-echo '<tr class="tab_bg_1"><td colspan="2" class="center"><input type="submit" class="submit" value="' . __('Save', 'action1') . '"></td></tr>';
-echo '</table>';
-echo '</form>';
+// Client ID field
+echo "<tr class='tab_bg_1'>";
+echo "<td>" . __('Client ID', 'action1') . "</td>";
+echo "<td><input type='text' name='client_id' value='' size='50'></td>";
+echo "</tr>";
+
+// Client Secret field
+echo "<tr class='tab_bg_1'>";
+echo "<td>" . __('Client Secret', 'action1') . "</td>";
+echo "<td><input type='password' name='client_secret' value='' size='50'></td>";
+echo "</tr>";
+
+// Submit button
+echo "<tr class='tab_bg_2'>";
+echo "<td colspan='2' class='center'><input type='submit' name='save' value='" . __('Save', 'action1') . "' class='submit'></td>";
+echo "</tr>";
+
+echo "</table>";
+echo "</form>";
 
 Html::footer();

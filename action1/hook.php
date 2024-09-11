@@ -49,3 +49,19 @@ function plugin_action1_uninstall()
     Config::deleteConfigurationValues('plugin:action1');
     return true;
 }
+
+// Add the sub-menu to the Tools section
+function plugin_action1_add_menus() {
+    global $PLUGIN_HOOKS;
+
+    // Add the submenu under Tools
+    $PLUGIN_HOOKS['menu_toadd']['tools'] = ['action1' => 'PluginAction1Menu'];
+}
+
+function PluginAction1Menu() {
+    return [
+        'title'  => __('Action1 Setup', 'action1'),
+        'page'   => '/plugins/action1/front/setup.form.php',
+        'icon'   => 'fas fa-cogs'
+    ];
+}

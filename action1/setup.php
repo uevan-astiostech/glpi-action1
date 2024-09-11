@@ -48,7 +48,9 @@ function plugin_init_action1()
 
     $PLUGIN_HOOKS['csrf_compliant']['action1'] = true;
 
+    // Register menu hook
     $PLUGIN_HOOKS['config_page']['action1'] = 'front/setup.form.php';
+    plugin_action1_add_menus();
 }
 
 
