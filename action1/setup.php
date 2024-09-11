@@ -61,9 +61,9 @@ function plugin_version_action1()
     return [
         'name'           => 'Action1',
         'version'        => PLUGIN_ACTION1_VERSION,
-        'author'         => '<a href="https://www.astiostech.com/">AstiosTech\'</a>',
-        'license'        => '',
-        'homepage'       => '',
+        'author'         => '<a href="https://www.astiostech.com/">AstiosTech Sdn Bhd</a>',
+        'license'        => 'GPL V3+',
+        'homepage'       => 'https://www.astiostech.com/',
         'requirements'   => [
             'glpi' => [
                 'min' => PLUGIN_ACTION1_MIN_GLPI_VERSION,
