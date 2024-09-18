@@ -14,8 +14,8 @@ This plugin integrates Action1, a patch management tool, with the GLPI system. I
 For detailed API documentation on Action1, visit [Action1 API Documentation](https://app.action1.com/apidocs/#/).
 
 ## Requirements
-- GLPI 9.5+
-- PHP 7.4+
+- GLPI 10.0.0+
+- PHP 8.0+
 - MySQL 5.7+
 - Action1 API Credentials (Client ID and Client Secret)
 
