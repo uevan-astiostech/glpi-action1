@@ -1,8 +1,29 @@
-# Empty GLPI plugin
+# GLPI Plugin for Action1 Integration
 
-An empty plugin, to get started!
+## Overview
+This plugin integrates Action1, a patch management tool, with the GLPI system. It allows the Super Admin in GLPI to manage patching operations, retrieve data from Action1, and perform relevant operations directly from GLPI using Action1's RESTful API. The plugin uses OAuth 2.0 for authentication, storing the `client_id`, `client_secret`, and `access_token` for secure API communication.
 
-This is basically a plugin skeleton with last minimal good practice to help you starting a new plugin (or even update/check an existing one!).
+## Features
+- OAuth 2.0 Authentication with Action1 (Client ID and Client Secret)
+- Asynchronous data fetching using AJAX (or CRON jobs) from Action1
+- Configuration page to manage credentials and token information
+- Automatic token re-authentication when expired
+- Restricted access to the Super Admin role for patch management
+
+## Documentation
+For detailed API documentation on Action1, visit [Action1 API Documentation](https://app.action1.com/apidocs/#/).
+
+## Requirements
+- GLPI 9.5+
+- PHP 7.4+
+- MySQL 5.7+
+- Action1 API Credentials (Client ID and Client Secret)
+
+## Installation
+1. Clone the repository into your GLPI `plugins/` directory:
+   ```bash
+   git clone <repository_url> plugins/action1_integration
+
 
 ## Getting started
 

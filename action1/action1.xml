@@ -26,7 +26,7 @@
    <versions>
       <!-- Add as many version tag you want -->
       <version>
-         <num>0.0.3</num>
+         <num>0.0.5</num>
          <!-- Add as many compatibility tag you want -->
          <compatibility>10.0.16</compatibility>
       </version>
