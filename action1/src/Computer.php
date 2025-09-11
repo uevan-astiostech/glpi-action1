@@ -33,17 +33,51 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+namespace GlpiPlugin\Example;
+use CommonDBTM;
 
-// Entry menu case
-include ("../../../inc/includes.php");
+// Class of the defined type
 
-Session::checkRight("config", UPDATE);
+if (!defined('GLPI_ROOT')) {
+   die("Sorry. You can't access directly to this file");
+}
 
-// To be available when plugin in not activated
-Plugin::load('example');
+class Computer extends CommonDBTM {
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+   static function showInfo() {
+
+      echo '<table class="tab_glpi" width="100%">';
+      echo '<tr>';
+      echo '<th>'.__('More information').'</th>';
+      echo '</tr>';
+      echo '<tr class="tab_bg_1">';
+      echo '<td>';
+      echo __('Test successful');
+      echo '</td>';
+      echo '</tr>';
+      echo '</table>';
+   }
+
+
+   static function item_can($item) {
+
+      if (($item->getType() == 'Computer')
+          && ($item->right == READ)
+          && ($item->fields['groups_id'] > 0)
+          && !in_array($item->fields['groups_id'], $_SESSION["glpigroups"])) {
+         $item->right = 0; // unknown, so denied.
+      }
+   }
+
+
+   static function add_default_where($in) {
+
+      list($itemtype, $condition) = $in;
+      if ($itemtype == 'Computer') {
+         $table = getTableForItemType($itemtype);
+         $condition .= " (".$table.".groups_id NOT IN (".implode(',', $_SESSION["glpigroups"])."))";
+      }
+      return [$itemtype, $condition];
+   }
+
+}
