@@ -1,21 +1,32 @@
-# GLPi Example Plugin
+# Empty GLPI plugin
 
-## Introduction
+An empty plugin, to get started!
 
-This plugin implements a few basic glpi hooks.
-Most of implemented features stands for example and are not
-expected to provide fantastic functionality other than teaching.
+This is basically a plugin skeleton with last minimal good practice to help you starting a new plugin (or even update/check an existing one!).
 
-## Documentation
+## Getting started
 
-This plugin is documented [here](https://github.com/pluginsGLPI/glpi-example-plugin/wiki),
-It is the developer documentation for plugin contributors as of now.
-You may change that link and provide documentation for your plugin,
-if you totally create your plugin repository from the worktree of this one.
+For convenience, you can place the `empty` directory in you GLPI plugins directory.
 
-## Installation
-
-```sh
-cd /my/glpi/deployment/main/directory/plugins
-git clone git@github.com:pluginsGLPI/glpi-example-plugin.git example
+You can use provided `plugin.sh` script in the main directory to get started. You'll have to pass name and version of your plugin in the call:
 ```
+./plugin.sh MyGreatPlugin 0.0.1
+```
+
+Please note than you really want to avoid special characters in name; as it will be used for paths, methods names, constants, and so on.
+
+This will create a directory named `mygreatplugin` at the same level than the `empty` directory that contains the plugin;
+all methods will be named accordingly (see result in `hook.php` and `setup.php`). Note that `My-Great-Plugin` would also create a directory named `mygreatplugin`.
+
+You can also provide a destination path (ie. if your `empty` directory is not in the GLPI's plugins directory):
+```
+./plugin.sh MyGreatPlugin 0.0.1 /path/to/glpi/plugins/
+```
+
+### Replacements
+
+* `Action1` will be replaced by the name you've provide, verbatim,
+* `0.0.7` will be replaced byt the version you've provided,
+* `action1` will be replaced byt the lowercased name,
+* `ACTION1` will be replaced by the uppercased name,
+* `{YEAR}` will be replaced by the current year.

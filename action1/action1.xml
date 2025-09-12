@@ -2,52 +2,40 @@
    <name>Action1</name>
    <key>action1</key>
    <!-- stable, beta, development, alpha, ... -->
-   <state>development</state>
-   <logo>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShqrZCdCwd3BQoK9tiJv18wS6Wf0K_bwnWnw&s</logo>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/action1/master/action1.png</logo>
    <description>
       <short>
-         <!-- Add as many lang tag you want -->
-         <en>Action1 GLPI plugin.</en>
+         <en>GLPI example plugin useful to bootstrap a new one</en>
       </short>
       <long>
-         <!-- Add as many lang tag you want -->
-         <en>A long description for Action1 GLPI plugin.</en>
+         <en>GLPI example plugin useful to bootstrap a new one, you should edit every field of this file, and see README.md</en>
       </long>
    </description>
-   <!--
-   <homepage>https://github.com/pluginsGLPI/{LNAME}</homepage>
-   <download>https://github.com/pluginsGLPI/{LNAME}/releases</download>
-   <issues>https://github.com/pluginsGLPI/{LNAME}/issues</issues>
-   <readme>https://github.com/pluginsGLPI/{LNAME}/blob/master/README.md</readme> -->
+   <homepage>https://github.com/pluginsGLPI/action1</homepage>
+   <download>https://github.com/pluginsGLPI/action1/releases</download>
+   <issues>https://github.com/pluginsGLPI/action1/issues</issues>
+   <readme>https://github.com/pluginsGLPI/action1/blob/master/README.md</readme>
    <authors>
-      <!-- Add as many author tag you want -->
       <author>AstiosTech Sdn Bhd</author>
+      <author>Uevanrajoo</author>
    </authors>
    <versions>
       <!-- Add as many version tag you want -->
       <version>
-         <num>0.0.5</num>
-         <!-- Add as many compatibility tag you want -->
-         <compatibility>10.0.16</compatibility>
+         <num>0.0.7</num>
+         <compatibility>~10.0.0</compatibility>
       </version>
    </versions>
    <langs>
       <!-- Add as many lang tag you want -->
       <lang>en_GB</lang>
+      <lang>en_US</lang>
    </langs>
-   <license>GPLv2+</license>
-   <!--tags>
+   <license>GPL v2+</license>
+   <tags>
       <en>
-         <tag>One tag</tag>
-         <tag>Another tag</tag>
+         <tag>action1</tag>
       </en>
-      <fr>
-         <tag>Un tag</tag>
-         <tag>Un autre tag</tag>
-      </fr>
-   </tags-->
-   <!--screenshots>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot.png</screenshot>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot2.png</screenshot>
-   </screenshots-->
+   </tags>
 </root>
